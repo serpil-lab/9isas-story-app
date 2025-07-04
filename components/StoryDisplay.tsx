@@ -17,7 +17,6 @@ const StoryDisplay: React.FC<StoryDisplayProps> = ({ story, onReset }) => {
     try {
       await saveStory(story);
     } catch(e) {
-      // Maybe show an error toast
       console.error("Failed to save story", e)
     }
   }

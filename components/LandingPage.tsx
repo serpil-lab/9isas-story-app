@@ -109,7 +109,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       <Header onNavigate={onNavigate} />
 
       <main>
-        {/* Hero Section */}
         <section id="home" className="relative pt-32 pb-20 flex flex-col items-center justify-center text-center px-4">
            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900 z-0"></div>
            <div className="relative z-10 w-full max-w-4xl mx-auto space-y-8">
@@ -142,7 +141,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 </div>
             </div>
           </div>
-          {/* Testimonials Section - Moved here */}
           <div id="testimonials" className="container mx-auto text-center mt-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                 <h2 className="text-2xl font-bold text-center text-white/90 font-title mb-10 uppercase tracking-[0.2em]">
                     Loved & trusted by 5,000+ happy members
@@ -168,12 +166,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
         </section>
 
-
-        {/* Features Section */}
         <section id="features" className="py-20 px-4 container mx-auto">
           <h2 className="text-4xl font-bold text-center text-white font-title mb-12">Why You'll Love 9isas</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Feature Card */}
             <div className="bg-slate-800/60 p-6 rounded-2xl text-center shadow-lg hover:shadow-purple-900/30 transition-shadow duration-300">
               <h3 className="text-xl font-bold text-purple-300 mb-2">Personalized Tales</h3>
               <p className="text-gray-400">Add your child's name and age for a story that's truly their own.</p>
@@ -193,7 +188,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
         </section>
         
-        {/* How It Works Section */}
         <section id="how-it-works" className="py-20 px-4 bg-slate-900/50">
           <h2 className="text-4xl font-bold text-center text-white font-title mb-12">Create a Story in 3 Simple Steps</h2>
           <div className="container mx-auto grid md:grid-cols-3 gap-12 text-center">
@@ -215,7 +209,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
         </section>
         
-        {/* Explore Section */}
         <section id="explore" className="py-20 px-4 container mx-auto">
             <div className="text-center max-w-3xl mx-auto">
                 <h2 className="text-4xl font-bold text-center text-white font-title mb-4">Explore What You Can Create</h2>
@@ -247,7 +240,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
         </section>
 
-        {/* Pricing Section */}
         <section id="pricing" className="py-20 px-4 container mx-auto">
           <h2 className="text-4xl font-bold text-center text-white font-title mb-4">Choose Your Plan</h2>
 
@@ -350,7 +342,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
         </section>
 
-        {/* FAQ Section */}
         <section id="faq" className="py-20 px-4 container mx-auto">
           <h2 className="text-4xl font-bold text-center text-white font-title mb-12">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto">

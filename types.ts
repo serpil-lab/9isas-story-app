@@ -16,33 +16,29 @@ export interface StoryParams {
   plot: string;
 }
 
-// Represents a story right after generation, before saving
 export interface GeneratedStory {
   id: string;
   title: string;
   story: string;
   imageBlob: Blob;
-  localImageUrl: string; // Used for immediate display
+  localImageUrl: string;
 }
 
-// Represents a user profile stored in Firestore
 export interface UserProfile {
     id: string;
     email: string;
     name: string | null;
 }
 
-// Represents a story saved in Firestore
 export interface SavedStory {
     id: string;
     userId: string;
     title: string;
     story: string;
-    imageUrl: string; // Public URL from Firebase Storage
+    imageUrl: string;
     createdAt: Timestamp;
 }
 
-// Defines the shape of the config object injected by the CI/CD pipeline
 export interface AppConfig {
     API_KEY: string;
     FIREBASE_API_KEY: string;

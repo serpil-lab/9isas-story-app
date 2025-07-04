@@ -24,12 +24,10 @@ const VerificationPendingPage: React.FC = () => {
         setMessage(null);
         try {
             await reloadUser();
-            // onIdTokenChanged in AuthContext handles navigation if verified.
         } catch (error) {
             console.error("Error reloading user status:", error);
             setMessage("An error occurred while checking your verification status.");
         } finally {
-            // Add a small delay for user feedback on the button
             setTimeout(() => setIsChecking(false), 2000);
         }
     };

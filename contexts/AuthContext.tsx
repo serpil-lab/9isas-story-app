@@ -37,13 +37,11 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
     const unsubscribe = onIdTokenChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        // Fetch user profile
         const profileRef = doc(db, "profiles", currentUser.uid);
         const profileSnap = await getDoc(profileRef);
         if (profileSnap.exists()) {
           setUserProfile(profileSnap.data() as UserProfile);
         }
-        // Fetch saved stories
         const storiesQuery = query(collection(db, "stories"), where("userId", "==", currentUser.uid));
         const storiesSnapshot = await getDocs(storiesQuery);
         const stories = storiesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as SavedStory));
@@ -80,12 +78,10 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
 
       setLoading(true);
       try {
-          // 1. Upload image to Firebase Storage
           const imageRef = ref(storage, `story-images/${user.uid}/${story.id}.jpg`);
           await uploadBytes(imageRef, story.imageBlob);
           const imageUrl = await getDownloadURL(imageRef);
 
-          // 2. Save story metadata to Firestore
           const storyRef = doc(db, "stories", story.id);
           const newStoryData = {
               userId: user.uid,
@@ -96,14 +92,13 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
           };
           await setDoc(storyRef, newStoryData);
           
-          // 3. Update local state optimistically
           const newStoryForState: SavedStory = {
               id: story.id,
               userId: user.uid,
               title: story.title,
               story: story.story,
               imageUrl,
-              createdAt: Timestamp.now() // Use client-side timestamp for immediate UI update
+              createdAt: Timestamp.now()
           };
           setSavedStories(prev => [...prev, newStoryForState]);
 
@@ -117,7 +112,10 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
   
   const reloadUser = async () => {
     if (auth.currentUser) {
+        setLoading(true);
         await reload(auth.currentUser);
+        // The onIdTokenChanged listener will handle the rest
+        // We set loading back to false in the listener
     }
   };
 

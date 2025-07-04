@@ -35,7 +35,6 @@ const generateImagePrompt = (title: string, params: StoryParams): string => `
 
 export const generateStoryAndImage = async (params: StoryParams): Promise<Omit<GeneratedStory, 'localImageUrl'>> => {
   try {
-    // 1. Generate the story text
     const storyPrompt = generateStoryPrompt(params);
     const storyResponse: GenerateContentResponse = await ai.models.generateContent({
       model: "gemini-2.5-flash-preview-04-17",
@@ -55,7 +54,6 @@ export const generateStoryAndImage = async (params: StoryParams): Promise<Omit<G
     
     const storyData: { title: string; story: string; } = JSON.parse(jsonStr);
 
-    // 2. Generate the image
     const imagePrompt = generateImagePrompt(storyData.title, params);
     const imageResponse = await ai.models.generateImages({
       model: 'imagen-3.0-generate-002',
@@ -69,7 +67,6 @@ export const generateStoryAndImage = async (params: StoryParams): Promise<Omit<G
 
     const base64ImageBytes: string = imageResponse.generatedImages[0].image.imageBytes;
     
-    // Convert base64 to Blob
     const fetchRes = await fetch(`data:image/jpeg;base64,${base64ImageBytes}`);
     const imageBlob = await fetchRes.blob();
 

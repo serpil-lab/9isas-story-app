@@ -22,7 +22,6 @@ const App: React.FC = () => {
   }
 
   const navigateTo = (newView: View) => {
-    // If user is not logged in and tries to access protected view, send to auth
     if (!user && (newView === 'generator' || newView === 'library')) {
       setView('auth');
     } else {
@@ -30,7 +29,6 @@ const App: React.FC = () => {
     }
   };
   
-  // This effect ensures the view changes correctly after login/logout
   React.useEffect(() => {
     if (user && view === 'auth') {
         setView('generator');

@@ -1,10 +1,8 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// This check is important for local development where config.js might not exist.
 const firebaseConfig = window.APP_CONFIG ? {
   apiKey: window.APP_CONFIG.FIREBASE_API_KEY,
   authDomain: window.APP_CONFIG.FIREBASE_AUTH_DOMAIN,
@@ -12,13 +10,10 @@ const firebaseConfig = window.APP_CONFIG ? {
   storageBucket: window.APP_CONFIG.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: window.APP_CONFIG.FIREBASE_MESSAGING_SENDER_ID,
   appId: window.APP_CONFIG.FIREBASE_APP_ID,
-  measurementId: window.APP_CONFIG.FIREBASE_MEASUREMENT_ID, // This one is often optional
+  measurementId: window.APP_CONFIG.FIREBASE_MEASUREMENT_ID,
 } : {};
 
-
-// Basic validation to ensure Firebase config is loaded.
 if (!firebaseConfig.apiKey) {
-    // In a deployed environment, this indicates a failure in the CI/CD pipeline.
     const errorDiv = document.createElement('div');
     errorDiv.style.position = 'fixed';
     errorDiv.style.top = '0';
@@ -34,7 +29,6 @@ if (!firebaseConfig.apiKey) {
     throw new Error("Firebase API Key is not configured. Please check your deployment secrets and CI/CD workflow.");
 }
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);

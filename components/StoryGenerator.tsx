@@ -27,7 +27,6 @@ const StoryGenerator: React.FC<StoryGeneratorProps> = ({ onNavigate }) => {
   const [error, setError] = useState<string | null>(null);
   const { user, logOut } = useAuth();
   
-  // Clean up the local image URL when the component unmounts
   useEffect(() => {
     return () => {
         if (story?.localImageUrl) {
