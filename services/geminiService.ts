@@ -2,7 +2,7 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { StoryParams, GeneratedStory } from '../types';
 
 if (!window.APP_CONFIG || !window.APP_CONFIG.API_KEY) {
-    throw new Error("API_KEY is not configured. Please check your deployment secrets.");
+    throw new Error("Gemini API_KEY is not configured. Please check your deployment secrets.");
 }
 
 const ai = new GoogleGenAI({ apiKey: window.APP_CONFIG.API_KEY });
