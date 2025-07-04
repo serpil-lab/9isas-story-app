@@ -1,11 +1,11 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { StoryParams, GeneratedStory } from '../types';
 
-if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable not set");
+if (!window.APP_CONFIG || !window.APP_CONFIG.API_KEY) {
+    throw new Error("API_KEY is not configured. Please check your deployment secrets.");
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: window.APP_CONFIG.API_KEY });
 
 const generateStoryPrompt = (params: StoryParams): string => `
   You are a magical storyteller for children, writing for a brand called "9isas". Your task is to write a short, enchanting story for a child named ${params.name || 'a brave adventurer'}, who is ${params.age || 'young'} years old.
